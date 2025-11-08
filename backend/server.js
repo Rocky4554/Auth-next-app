@@ -50,26 +50,26 @@
 // });
 //////
 
-const express = require('express');
-const cors = require('cors');
-const cookieParser = require('cookie-parser');
-const dotenv = require('dotenv');
+import express from "express";
+import cors from "cors";
+import dotenv from "dotenv";
+import connectDB from "./config/db.js";
+import serverless from "serverless-http";
 
 dotenv.config();
 const app = express();
 
-app.use(express.json({ limit: '10mb' }));
-app.use(cookieParser());
-app.use(cors({
-  origin: process.env.FRONTEND_URL || 'http://localhost:3000',
-  credentials: true,
-}));
+app.use(cors());
+app.use(express.json());
 
-app.use('/api/auth', require('../routes/auth'));
-app.use('/api/tasks', require('../routes/tasks'));
+// Connect DB
+connectDB();
 
-app.get('/api/health', (req, res) => {
-  res.json({ status: 'Server is running', timestamp: new Date() });
+// Example route
+app.get("/api/health", (req, res) => {
+  res.json({ message: "Server is healthy 🚀" });
 });
 
-module.exports = app;
+// Export wrapped handler for Vercel
+export const handler = serverless(app);
+export default app;
