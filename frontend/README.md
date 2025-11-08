@@ -379,7 +379,7 @@ DELETE /tasks/:id
 Authorization: JWT token (via cookie)
 ```
 
-For detailed API documentation, see [API_DOCUMENTATION.md](./API_DOCUMENTATION.md)
+For detailed API documentation, see [API_DOCUMENTATION.md](./frontend/public/api-documentation.md)
 
 ---
 
@@ -474,31 +474,27 @@ For detailed API documentation, see [API_DOCUMENTATION.md](./API_DOCUMENTATION.m
 ## Screenshots
 
 ### Home Page
-![Home Page](./screenshots/home.png)
+![Home Page](./frontend/public/screeshots/home.png)
 *Landing page with feature highlights and call-to-action buttons*
 
 ### Registration Page
-![Registration](./screenshots/register.png)
+![Registration](./frontend/public/screeshots/register.png)
 *User registration form with validation*
 
-### Login Page
-![Login](./screenshots/login.png)
-*Secure login interface*
-
 ### Dashboard
-![Dashboard](./screenshots/dashboard.png)
+![Dashboard](./frontend/public/screeshots/dashboard.png)
 *Main dashboard with task statistics and filters*
 
 ### Task List
-![Task List](./screenshots/tasks.png)
+![Task List](./frontend/public/screeshots/taskss.png)
 *Grid view of tasks with status and priority indicators*
 
 ### Task Creation
-![Create Task](./screenshots/create-task.png)
+![Create Task](./frontend/public/screeshots/task.png)
 *Modal form for creating/editing tasks*
 
 ### User Profile
-![Profile](./screenshots/profile.png)
+![Profile](./frontend/public/screeshots/profile.png)
 *User profile page with editable information*
 
 ---
