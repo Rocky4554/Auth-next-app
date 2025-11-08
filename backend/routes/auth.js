@@ -4,6 +4,7 @@ const { body, validationResult } = require('express-validator');
 const jwt = require('jsonwebtoken');
 const User = require('../models/User');
 const auth = require('../middleware/auth');
+const connectDB = require('../config/db');
 
 const generateToken = (userId) => {
   return jwt.sign({ userId }, process.env.JWT_SECRET, {
@@ -17,6 +18,7 @@ router.post('/register', [
   body('password').isLength({ min: 6 }).withMessage('Password must be at least 6 characters')
 ], async (req, res) => {
   try {
+     await connectDB();
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
       return res.status(400).json({ message: errors.array()[0].msg });
@@ -64,6 +66,7 @@ router.post('/login', [
   body('password').notEmpty().withMessage('Password is required')
 ], async (req, res) => {
   try {
+    await connectDB();
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
       return res.status(400).json({ message: errors.array()[0].msg });
@@ -111,6 +114,7 @@ router.post('/logout', auth, (req, res) => {
 
 router.get('/me', auth, async (req, res) => {
   try {
+     await connectDB();
     const user = await User.findById(req.user._id).select('-password');
     res.json(user);
   } catch (error) {
@@ -124,6 +128,7 @@ router.put('/profile', auth, [
   body('email').optional().isEmail().withMessage('Please enter a valid email')
 ], async (req, res) => {
   try {
+     await connectDB();
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
       return res.status(400).json({ message: errors.array()[0].msg });

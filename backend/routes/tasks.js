@@ -3,9 +3,11 @@ const router = express.Router();
 const { body, validationResult } = require('express-validator');
 const Task = require('../models/Task');
 const auth = require('../middleware/auth');
+const connectDB = require('../config/db');
 
 router.get('/', auth, async (req, res) => {
   try {
+     await connectDB();
     const { status, priority, search } = req.query;
     const query = { user: req.user._id };
     if (status) query.status = status;
@@ -26,6 +28,7 @@ router.get('/', auth, async (req, res) => {
 
 router.get('/:id', auth, async (req, res) => {
   try {
+     await connectDB();
     const task = await Task.findOne({ _id: req.params.id, user: req.user._id });
     if (!task) {
       return res.status(404).json({ message: 'Task not found' });
@@ -104,6 +107,7 @@ router.put('/:id', auth, [
 
 router.delete('/:id', auth, async (req, res) => {
   try {
+     await connectDB();
     const task = await Task.findOneAndDelete({ _id: req.params.id, user: req.user._id });
     if (!task) {
       return res.status(404).json({ message: 'Task not found' });

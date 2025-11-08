@@ -50,51 +50,26 @@
 // });
 //////
 
-
 const express = require('express');
-const mongoose = require('mongoose');
 const cors = require('cors');
 const cookieParser = require('cookie-parser');
 const dotenv = require('dotenv');
 
 dotenv.config();
-
 const app = express();
 
 app.use(express.json({ limit: '10mb' }));
 app.use(cookieParser());
 app.use(cors({
-  origin: process.env.FRONTEND_URL || 'https://auth-next-app-zfoj.vercel.app',
+  origin: process.env.FRONTEND_URL || 'http://localhost:3000',
   credentials: true,
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
-  allowedHeaders: ['Content-Type', 'Authorization']
 }));
-
-let dbConnected = false;
-async function connectDB() {
-  if (dbConnected) return;
-  await mongoose.connect(process.env.MONGODB_URI, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true
-  });
-  dbConnected = true;
-  console.log('MongoDB connected (serverless)');
-}
-connectDB().catch(err => console.error('MongoDB error:', err));
 
 app.use('/api/auth', require('../routes/auth'));
 app.use('/api/tasks', require('../routes/tasks'));
 
 app.get('/api/health', (req, res) => {
   res.json({ status: 'Server is running', timestamp: new Date() });
-});
-
-app.use((err, req, res, next) => {
-  console.error(err.stack);
-  res.status(500).json({
-    message: 'Something went wrong!',
-    error: process.env.NODE_ENV === 'development' ? err.message : undefined
-  });
 });
 
 module.exports = app;
