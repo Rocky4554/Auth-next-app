@@ -4,9 +4,8 @@ A full-stack task management application built with Next.js, Node.js, Express, a
 
 ## Live Demo
 
-**Frontend**: [https://taskflow-app.vercel.app](https://taskflow-app.vercel.app)  
-**Backend API**: [https://taskflow-api.railway.app/api](https://taskflow-api.railway.app/api)  
-**GitHub Repository**: [https://github.com/yourusername/taskflow](https://github.com/yourusername/taskflow)
+**Live Link**: [https://auth-next-app-zfoj.vercel.app](https://auth-next-app-zfoj.vercel.app)  
+
 
 ### Demo Credentials
 ```
@@ -15,15 +14,6 @@ Password: demo123456
 ```
 
 **Note**: Feel free to register your own account to test the full functionality.
-
----
-
-## Quick Links
-
-- [Live Application](https://taskflow-app.vercel.app)
-- [API Documentation](./API_DOCUMENTATION.md)
-- [Scaling Guide](./SCALING_GUIDE.md)
-- [Postman Collection](./TaskFlow.postman_collection.json)
 
 ---
 
@@ -520,8 +510,8 @@ For detailed API documentation, see [API_DOCUMENTATION.md](./frontend/public/api
 ## Author
 
 **Your Name**
-- GitHub: [@yourusername](https://github.com/yourusername)
-- LinkedIn: [Your Name](https://linkedin.com/in/yourprofile)
+- GitHub: [@yourusername](https://github.com/Rocky4554)
+- LinkedIn: [Your Name](https://www.linkedin.com/in/raunak-kumar54/)
 - Email: kumarraunak085@gmail.com
 
 ---
